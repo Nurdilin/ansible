@@ -1,0 +1,7 @@
+---
+
+- name: Get Deploy Version (Latest)
+  local_action: shell curl -s https://artifactory.company.com/artifactory/repo/maven-metadata.xml | grep latest | sed 's/.*<latest>\([^<]*\)<\/latest>.*/\1/' 
+  ignore_errors: true
+  register: VERSION
+- debug: msg="{{ VERSION.stdout }}" 

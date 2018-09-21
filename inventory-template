@@ -1,0 +1,27 @@
+[test-server-1]
+x.x.x.x
+
+[test-server-2]
+y.y.y.y
+
+[test_all:children]
+test-server-1
+test-server-2
+
+[test-server-1:vars]
+#MY_USER and MY_PASS have been set up .in bashrc
+ansible_user="{{ MY_USER_}}"
+ansible_ssh_pass="{{ MY_PASS }}"
+
+[test-server-2:vars]
+ansible_user="{{ MY_USER_}}"
+ansible_ssh_pass="{{ MY_PASS }}"
+ansible_ssh_common_args='-o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o ProxyCommand="ssh -q -W %h:%p bastion-gateway-box-ip "'
+
+[test_all:vars]
+#no vars
+ 
+[all:vars]
+ansible_ssh_pipelining=True
+ansible_become_method=su
+ansible_become_exe="sudo su -"

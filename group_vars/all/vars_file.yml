@@ -1,0 +1,6 @@
+---
+DEPLOY_VERSION: "2.1-fake"
+FAKE_PATH: "/fake/path"
+FAKE_DEPLOYMENT_PATH: "{{ FAKE_PATH }}/deployment/{{ DEPLOY_VERSION }}"
+
+

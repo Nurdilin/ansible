@@ -1,0 +1,24 @@
+---
+
+- name: stop appA
+  command: "/home/my_username/script_to_stop_appA.sh"
+  become: yes
+  become_user: my_username
+  register: stop_output
+- debug: var=stop_output.stdout_lines
+
+- pause:
+    seconds: 15
+
+- name: stop appB
+  command: "/home/my_username/script_to_stop_appB.sh --stop --really --kill --it"
+  become: yes
+  become_user: my_username
+  register: stop_output
+- debug: var=stop_output.stdout_lines
+
+- pause:
+    minutes: 3
+
+
+

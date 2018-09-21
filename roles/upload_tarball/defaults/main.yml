@@ -1,0 +1,5 @@
+# The folder defaults is used to store the values of default vars for a role.
+
+---
+
+jumpbox: ""

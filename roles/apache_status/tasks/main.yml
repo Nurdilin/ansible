@@ -1,0 +1,7 @@
+---
+- name: make sure apache is running
+  become: yes
+  become_user: my_remote_username
+  service:
+    name: httpd
+    state: started

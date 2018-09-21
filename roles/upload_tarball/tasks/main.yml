@@ -1,0 +1,6 @@
+---
+- name: Upload tarball to "{{ jumpbox }}" 
+  when: inventory_hostname == "{{ jumpbox }}"
+  copy:
+    src: /my_laptop/tmp/my_username/test-{{ VERSION_DEPLOY }}.tgz
+    dest: /tmp/test.tgz

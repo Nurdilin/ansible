@@ -1,0 +1,22 @@
+- name: A template playbook
+  hosts: test_all
+  order: inventory
+  #ordered as they appear in the inventory 
+
+  gather_facts: False
+  tags: [ 'never', 'all' ]
+
+  vars_files:
+    -  group_vars/all/vars_file.yml
+
+  roles:
+    - ping
+    - whoami
+    - notify_slack
+    - get_latest_master_version
+    - download_build_locally
+    - { role: upload_tarball, jumpbox: 'x.x.x.x' }
+    - { role: upload_tarball, jumpbox: 'y.y.y.y' }
+    - tarball_extract
+
+

@@ -1,0 +1,8 @@
+---
+
+  - name: Print whoami 
+    command: whoami
+    become: yes
+    become_user: my_remote_username
+    register: whoami_result
+  - debug: msg="whoami= {{whoami_result.stdout}}"

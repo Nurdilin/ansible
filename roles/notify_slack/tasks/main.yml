@@ -1,0 +1,11 @@
+---
+
+- name: Send notification message via Slack
+  local_action:
+    module: slack
+    token: "xxxxxxxxxx-xxxxxxxx-xxxxxxxxxxxxxxx"
+    msg: "Hello team! Ansible testing!"
+    channel: "#testbot"
+    username: "ansible-bot"
+
+

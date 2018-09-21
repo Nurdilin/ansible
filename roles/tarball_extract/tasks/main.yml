@@ -1,0 +1,33 @@
+---
+
+- name: Create remote dir
+  become: yes
+  become_user: my_remote_username
+  file: 
+    path: "/temp/my_dir" 
+    state: directory 
+    mode: 0700
+
+- name: Copy a tarball from remote /tmp to remote /tmp/my_dir
+  become: yes
+  become_user: my_remote_username
+  copy:
+    src: "/tmp/test.tgz"
+    dest: "/tmp/my_dir/test.tgz"
+    remote_src: yes
+    owner: my_remote_username
+    group: my_remote_username
+    mode: 0700
+
+- name: Unarchive release
+  become: yes
+  become_user: my_remote_username
+  unarchive: 
+    src: "/tmp/my_dir/test.tgz" 
+    dest: "/tmp/my_dir/test" 
+    remote_src: yes
+
+- pause: 
+    prompt: "Make sure tarball extracted"
+
+

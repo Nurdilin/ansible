@@ -1,0 +1,10 @@
+---
+
+- name: Download artifactory build locally via module get_url
+  run_once: true
+  # because any task in a playbook has to be run for each managed host. We do not to download more than once the artifact
+  local_action:
+    module: get_url 
+    url: https://artifactory.company.com/artifactory/test-{{ DEPLOY_VERSION }}.tgz 
+    tmp_dest: /my_laptop/tmp/.my_username
+    dest: /my_laptop/tmp/my_username/test-{{ DEPLOY_VERSION }}.tgz 
